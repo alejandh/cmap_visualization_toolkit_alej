@@ -39,7 +39,8 @@ The CMAP (Cultural Mapping and Pattern Analysis) tool is free, open-source and p
 
 ### Notebook Version & Local Installation
 
-For an introduction, in an easy to use online version (not for sensitive data) check out the collab version [here](https://colab.research.google.com/drive/1n90EDMSiXhIaOULUMPJ4W4hqdZCh1NQw?usp=sharing)
+For an introduction, in an easy to use online version (not for sensitive data) check out the collab version [here](https://colab.research.google.com/drive/1n90EDMSiXhIaOULUMPJ4W4hqdZCh1NQw?usp=sharing)  
+You can find a short tutorial on using the toolkit in collab [here](https://vimeo.com/1122226315))
 ---
 
 ## What This Toolkit Does
@@ -475,7 +476,8 @@ See [data_ethics.md](./DATA_ETHICS.md) for details on ethical considerations, in
 
 ### Disclaimer
 See [DISCLAIMER.md](./DISCLAIMER.md) for important legal and usage disclaimers. 
+
 ### Disclosures
 - LLMs (primarily Claude-Sonnet) were used to check for errors and help annotate code.  
 - If you find errors or are interested in collaboration, contact corey.abramson@rice.edu.  
-- This free software carries no warranty or guarantee—like life.
+- This free software carries no warranty or guarantee.
