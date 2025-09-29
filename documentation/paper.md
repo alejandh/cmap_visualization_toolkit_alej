@@ -174,73 +174,110 @@ C.M.A. led project conceptualization, software architecture, software developmen
 :::
 # Appendix
 ## Statistics
+
 ### RoBERTa
 We employ RoBERTa, a transformer-based language model [@liu2019roberta], to obtain 
 contextual token embeddings. Each paragraph in the corpus is tokenized, and subword tokens are mapped to hidden states from the final layer of the model. Consecutive subword tokens belonging to the same lexical unit are aggregated into word-level embeddings by averaging their hidden state vectors. To reduce morphological variance, each word is lemmatized.
+
 Formally, let $x = (t_1, t_2, \dots, t_n)$ denote a sequence of tokens and 
 $\mathbf{h}_i \in \mathbb{R}^d$ the hidden representation of token $t_i$ from the final layer of 
 RoBERTa. For a word $w$ composed of tokens $\{t_{i}, \dots, t_{j}\}$, its embedding is:
+
 $$
 \mathbf{v}_w = \frac{1}{j-i+1} \sum_{k=i}^{j} \mathbf{h}_k
 $$
+
 All occurrences of a word across the corpus are then averaged to form its 
 document-level representation:
+
 $$
 \bar{\mathbf{v}}_w = \frac{1}{N_w} \sum_{m=1}^{N_w} \mathbf{v}_w^{(m)},
 $$
+
 where $N_w$ is the number of times word $w$ appears.
+
 To identify candidate words most semantically related to the seed set $S$, 
 we compute the cosine similarity between embeddings:
+
 $$
 \text{cos}(\mathbf{u}, \mathbf{v}) \;=\; 
 \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\| \, \|\mathbf{v}\|}
 $$
+
 For each candidate word $c$, its score is the average similarity to the seed embeddings:
+
 $$
 \text{score}(c) = \frac{1}{|S|} \sum_{s \in S} 
 \text{cos}(\bar{\mathbf{v}}_c, \bar{\mathbf{v}}_s)
 $$
+
 The top-ranked words by $\text{score}(c)$ are selected to expand the seed set, and the resulting embeddings are used to construct a cosine similarity matrix for subsequent clustering and network analysis.
+
 ### Jaccard
+
 Jaccard similarity measures how much two sets overlap. A value of $1$ means the sets are identical, while $0$ means they share nothing in common:
+
 $$
 \mathrm{Jaccard}(A,B) = \frac{|A \cap B|}{|A \cup B|}
 $$
+
 **Implementation** For each pair of words $w_i$ and $w_j$, we collect the unique context words that appear within a sliding window around them, denoted $\mathcal{C}_{w_i}$ and $\mathcal{C}_{w_j}$. Their Jaccard score tells us how similar the two context sets are. A higher score means the words tend to appear with similar neighbors, making them more closely linked in the semantic network.
+
 ### PMI and PPMI
+
 Pointwise Mutual Information (PMI) measures how strongly two words are linked compared to what we would expect if they were independent. A positive PMI means the words appear together more often than chance, while a negative PMI means they appear together less often. To keep the measure stable and interpretable, we use Positive PMI (PPMI), which replaces all negative values with zero. For example, the pair *"New"* and *"York"* has a high PPMI because they almost always occur together, whereas *"New"* and *"banana"* would have a PPMI close to zero.
+
 $$
 \mathrm{PMI}(x,y) = \log_2\frac{P(x,y)}{P(x)P(y)}, \quad
 \mathrm{PPMI}(x,y) = \max(0,\mathrm{PMI}(x,y))
 $$
+
 **Implementation.** We build a co-occurrence matrix by sliding a context window across the corpus. From these counts we estimate probabilities $p_{ij}$, $p_i$, and $p_j$, and compute
+
 $$
 e^{\mathrm{PPMI}}_{w_i,j} = \max\left(0, \log_2 \frac{p_{ij}}{\max(\varepsilon,p_i)\max(\varepsilon,p_j)} \right)
 $$
+
 Here $p_{ij}$ is the probability that anchor $w_i$ and context word $c_j$ co-occur, and $\varepsilon$ (e.g., $10^{-10}$) prevents division by zero. We then apply cosine similarity to the resulting PPMI vectors to compare words in the semantic network.
+
 ### TF–IDF
+
 Term Frequency–Inverse Document Frequency (TF–IDF) assigns higher weight to a term if it is frequent in a given context but relatively rare across the entire corpus. This makes it useful for identifying words that are especially informative, rather than just common.
+
 $$
 \mathrm{tfidf}(t,d,\mathcal{D}) = \mathrm{tf}(t,d) \cdot \log \frac{|\mathcal{D}|}{\mathrm{df}(t)}
 $$
+
 where $\mathrm{tf}(t,d)$ is the frequency of term $t$ in document $d$, and $\mathrm{df}(t)$ is the number of documents containing $t$ in the corpus $\mathcal{D}$.
+
 **Implementation** For anchor $w_i$ and context $c_k$ with raw count $v_{w_i,k}$, we weight each context by its TF–IDF score:
+
 $$
 e^{\mathrm{T}}_{w_i,k} = v_{w_i,k} \cdot \mathrm{tfidf}(c_k)
 $$
+
 Cosine similarity between rows of $e^{\mathrm{T}}$ gives an anchor-to-anchor similarity matrix, showing how strongly two words are connected through their distinctive contexts. For example, *doctor* and *hospital* may yield a high similarity score because they share informative context words, while *doctor* and *banana* will score low.
+
 ### Raw Context–Count Vectors
+
 The simplest way to represent a word is to count how often other words appear near it. For each target word $w_i$, we slide a fixed window of size $w$ across the corpus. Every time $w_i$ occurs, we look at the surrounding context words in that window (including $w_i$ itself) and add one to their counts. This gives a vector $\vec{v}_{w_i}$ where each entry $v_{w_i,k}$ records how often context word $c_k$ appears near $w_i$.
+
 $$
 v_{w_i,k} = \sum_{\text{sent}\in\mathcal{D}} \sum_{\substack{p:\,\text{sent}[p]=w_i}} \sum_{q=\max(0,p-w)}^{\min(|\text{sent}|-1,p+w)} \mathbf{1}\{\text{sent}[q]=c_k\}, \quad \vec{v}_{w_i}=(v_{w_i,1},\dots,v_{w_i,n})
 $$
+
 After building these vectors, we compute cosine similarity between them to measure how similar two words' contexts are. For example, if *"doctor"* and *"nurse"* often appear near similar words (*"hospital," "patient," "care"*), their vectors will be close, and cosine similarity will assign them a high score.
+
 ## Distance Metric 
+
 Given $E^\phi \in \mathbb{R}^{m \times n}$ with rows $(\vec{e}^{\,\phi}_{w_i})^T$,
+
 $$
 S^{\phi}_{ij} = \cos(\vec{e}^{\,\phi}_{w_i}, \vec{e}^{\,\phi}_{w_j}) = \frac{\vec{e}^{\,\phi}_{w_i} \cdot \vec{e}^{\,\phi}_{w_j}}{\|\vec{e}^{\,\phi}_{w_i}\| \, \|\vec{e}^{\,\phi}_{w_j}\|}
 $$
+
 Cosine similarity measures how close two word vectors are in direction, regardless of their length. For two embeddings $\vec{e}^{\,\phi}_{w_i}$ and $\vec{e}^{\,\phi}_{w_j}$, it is defined as the cosine of the angle between them. Values near $1$ indicate strong semantic similarity, while values near $0$ or negative suggest weak or opposite meaning. For example, the vectors for *doctor* and *nurse* would yield a high cosine similarity, reflecting their related meanings, whereas *doctor* and *banana* would yield a value close to $0$. This makes cosine similarity a simple and effective tool for comparing words in our semantic network analysis.
+
 ## Other Resources
 ### Workflow Steps Example (End-to-End)
 The workflow for analyzing text as data is iterative. This synthesized workflow integrates pragmatic qualitative steps [@abramson2025pragmatic; @li2025ethnography] with frameworks established in CSS [@grimmer2022text].  
