@@ -264,3 +264,82 @@ S^{\phi}_{ij} = \cos(\vec{e}^{\,\phi}_{w_i}, \vec{e}^{\,\phi}_{w_j}) = \frac{\ve
 $$
 
 Cosine similarity measures how close two word vectors are in direction, regardless of their length. For two embeddings $\vec{e}^{\,\phi}_{w_i}$ and $\vec{e}^{\,\phi}_{w_j}$, it is defined as the cosine of the angle between them. Values near $1$ indicate strong semantic similarity, while values near $0$ or negative suggest weak or opposite meaning. For example, the vectors for *doctor* and *nurse* would yield a high cosine similarity, reflecting their related meanings, whereas *doctor* and *banana* would yield a value close to $0$. This makes cosine similarity a simple and effective tool for comparing words in our semantic network analysis.
+
+## Other Resources
+### Workflow Steps Example (End-to-End)
+The workflow for analyzing text as data is iterative. This synthesized workflow integrates pragmatic qualitative steps [@abramson2025pragmatic; @li2025ethnography] with frameworks established in CSS [@grimmer2022text].  
+- **Define Question/Theory**  
+Specify the research question or Quantity of Interest (QoI). Work may begin inductively [@nelson2020computational] or deductively [@grimmer2022text].  
+- **Aggregation (Building the Corpus)**  
+Define population, sampling frame, and document units. Data sources can include transcribed interviews, ethnographic fieldnotes, historical documents, webscraped data, policy documents, administrative text, or open-ended survey responses. Record provenance and metadata.    
+>*Python Tools:* pandas for manifests; requests + beautifulsoup4 (web scraping), or API clients. Store as JSONL/CSV + raw text. Export from QDA >software, or integrate text into a data frame.  
+- **Digitization and Processing (Data Wrangling)**  
+*Digitization (OCR & QA):* Convert PDFs/scans. Perform manual Quality Assurance (QA). Choose digitization to preserve meaningful structure (speaker turns, page breaks) for citation integrity.   
+*Processing:* Clean and format text into machine-readable and tabular formats (see Schema below). Data can be imported from QDA software or read directly from .txt (UTF-8) files. Tokenize/segment and normalize.  
+>*Python Tools:* pytesseract (OCR); spaCy (normalization/tokenization).  
+- **Representation**  
+Transform text into formats suitable for computational analysis. Choose representations (BOW/TF-IDF, dictionaries, embeddings) to fit the QoI. This involves visualizing patterns, combined with readings.    
+*Python Tools:* scikit-learn vectorizers (DTM/TF-IDF); Hugging Face transformers (Embeddings).
+- **Annotating and Linking**  
+>*Annotating:* Build human system for indexing data. Utilize a hybrid approach—combining automation (lists, machine learning) and human coding >depending on scope and complexity [@abramson2025pragmatic]. This involves managing tradeoffs: while accuracy is key for a realist approach, >time efficiency and identifying insights otherwise missed are also crucial considerations. Entity tagging (persons/orgs/places) via spaCy NER.
+> 
+>*Linking:* Join texts to variables in dataframe (site, time, treatment, demographics) for comparison and modeling. If using qualitative >software or purposeful file naming, this can be done with minimal work [@li2025ethnography].    
+>*Python Tools:* spaCy NER; pandas (linking).  
+- **Analysis, Modeling & Visualization**    
+*Descriptions & Visualization:* LDA topics + human validation ("Reading Tea Leaves"); word-embeddings for schemas combined with in-depth narrative [@abramson2024inequality]. Use visualization tools (e.g., CMAP) to explore patterns and comparisons [@abramson2015beyond].    
+>*Modeling:* Supervised coding/stance with scikit-learn baselines and transformers (BERT-class); report metrics, calibration, and error >analysis. Combine unsupervised exploration (topics/clusters) with supervised measurement/prediction.
+>*Deep Reading & Interpretation:* Always return to exemplar passages to contextualize model patterns (scale down), examine disconfirming cases, >update explanations to account for data while noting contextual limits.
+- **Dissemination and Archiving**    
+Reproducible Jupyter notebooks (see workshop repo), CMAP visualizations, codebooks, curated quotes. Pair patterns + passages in presentation. Archive code/data where allowed; follow de-identification guidance and document limits/ethics.  
+### Data Schema Example (CMAP)
+For structured analysis and visualization (e.g., using the CMAP toolkit), data should be organized into a consistent tabular format (e.g., CSV or DataFrame). Below is an example schema:
+```
+# Updated schema with Python typing
+schema = {
+    "project": str,         # List project
+    "number": str,          # Position information
+    "reference": int,       # Position information
+    "text": str,            # Content, critical field: must not be empty
+    "document": str,        # Data source, Critical field: must not be empty
+    "old_codes": list[str], # Optional: codings, must be a list of strings
+    "start_position": int,  # Position information
+    "end_position": int,    # Position information
+    "data_group": list[str], # Optional, to differentiate document sets: Must be a list of strings
+    "text_length": int,     # Optional: NLP info
+    "word_count": int,      # Optional: NLP info
+    "doc_id": str,          # Optional: NLP info, unique paragraph level identifier
+    "codes": list[str]      # Critical for analyses with codes, Must be a list of strings
+}
+```
+### Modes of Combining Computation and Qualitative Analysis
+A key consideration is how—or whether—to integrate computational tools into the analytical workflow. Researchers adopt different modes based on project needs, data sensitivity, and analytical goals [@abramson2025pragmatic].  
+- **Streamline (Organizational):**    
+Using computational tools to manage the logistics of research—organizing manifests, facilitating de-identification, managing quotes, automating basic indexing and tracking team progress—even if the core coding and analysis remain mostly manual.
+- **Scaling-up (Efficiency/size):**    
+When the corpus is large, longitudinal, or multi-site, machine learning (e.g., supervised classification) is used to assist human coding andc omputational tools are used to compile data sets of larger sizes. This may require high-quality human-labeled training data and rigorous human checks and validation (e.g., hybrid approaches).
+- **Hybrid (Iterative Refinement and Mixed Methods):**   
+Combining human analysis with computational methods to answer different types of questions or refine understanding, often as a form of mixed-methods like computational ethnography or historical analysis with computational text analysis. This can involve iterative coding refinement, or using computational patterns (e.g., visualization, network analysis) to identify typologies or variations that guide subsequent in-depth reading and comparison [@abramson2025pragmatic].
+- **Discovery (Pattern Finding):**    
+Utilizing unsupervised methods (e.g., topic modeling, clustering, visualization) to identify latent patterns, themes, or typologies that guide subsequent deep reading and theory development [@nelson2020computational]. This is compatible with human inductive reading.
+- **Minimal/No Computation (The "Sociology of Computation"):**  
+Deliberately choosing not to automate analysis when ethical considerations. Documenting the rationale for this choice, as any choice, is practical and important for transparency [@abramson2025pragmatic].
+---
+## Related Software Resources
+**Li, Zhuofan and Corey M. Abramson.** 2022. *An Introduction to Machine Learning for Qualitative Research.* Jupyter Notebooks (Python). American Sociological Association Methodology Workshop. [GitHub Repository](https://github.com/lizhuofan95/ASA2022_Workshop)
+**Nelson, Laura K.** 2020. "Computational Grounded Theory: A Methodological Framework." *Sociological Methods & Research* 49(1):3-42. [Article](https://journals.sagepub.com/doi/10.1177/0049124117729703) | [Homepage](https://www.lauraknelson.com/)
+**Commercial Qualitative Data Software** (limited scalability for large datasets, lacks advanced CSS/statistical methods, and/or requires cloud computing):
+- ATLAS.ti Scientific Software Development GmbH. 2023. ATLAS.ti Mac (version 23.2.1). https://atlasti.com
+- Dedoose Version 9.0.107. 2023. Los Angeles, CA: SocioCultural Research Consultants, LLC. www.dedoose.com
+- Lumivero. 2023. NVivo (Version 14). https://www.lumivero.com
+---
+## Representative Scientific Applications
+### Peer-Reviewed Articles
+- Abramson, Corey M., Tara Prendergast, Zhuofan Li, and Martín Sánchez-Jankowski. 2024. "Inequality in the Origins and Experiences of Pain: What 'Big (Qualitative) Data' Reveal About Social Suffering in the United States." *Russell Sage Foundation Journal of the Social Sciences* 10(5):34-65. [Link](https://www.rsfjournal.org/content/rsfjss/10/5/34.full.pdf)  
+- Arteaga, Ignacia, Alma Hernández de Jesús, Brandi Ginn, Corey M. Abramson, and Daniel Dohan. 2025. "Understanding How Social Context Shapes Decisions to Seek Institutional Care: A Qualitative Study of Experiences of Progressive Cognitive Decline Among Latinx Families." *The Gerontologist* gnaf207. [Link](https://doi.org/10.1093/geront/gnaf207)  
+- Li, Zhuofan and Corey M. Abramson. 2025. "Ethnography and Machine Learning: Synergies and Applications." In *Oxford Handbook of the Sociology of Machine Learning*, edited by [editors]. Oxford University Press. [Preprint](https://arxiv.org/abs/2412.06087)  
+- Abramson, Corey M., Zhuofan Li, and Tara Prendergast. Expected 2026. "Qualitative Research in an Era of AI: A Pragmatic Approach to Data Analysis, Workflow, and Computation." *Annual Review of Sociology*. [Preprint available]
+### Conference Presentations (2024-2025)
+- Abramson, Corey M., Kieran Turner, Ignacia Arteaga, Alma Hernández de Jesús, Brandi Ginn, Yuhan Nian, and Daniel Dohan. 2025. "Pragmatic Sensemaking: Semantic Maps of Dementia Narratives." ARS'25: Tenth International Workshop on Social Network Analysis. Naples, Italy. [Preprint](https://arxiv.org/pdf/2509.12503)
+- Abramson, Corey M., Kieran Turner,Ignacia Arteaga, Alma Hernández de Jesús, Brandi Ginn, Yuhan Nian, and Daniel Dohan. 2025. "Pragmatic Sensemaking: Mapping the Cultural Work of Living with Dementia." American Sociological Association Annual Meeting. Chicago, IL.  
+- Abramson, Corey M., Zhuofan Li, and Tara Prendergast. 2024. "Qualitative Sociology in a Computational Era: Classic Issues, Emerging Trends, and New Possibilities." American Sociological Association Annual Meeting. Montreal, Canada.
+
