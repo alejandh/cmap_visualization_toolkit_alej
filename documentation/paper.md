@@ -1,4 +1,3 @@
-
 ---
 title: 'The Cultural Mapping and Pattern Analysis (CMAP) Visualization Toolkit: Open Source Text Analysis for Qualitative and Computational Social Science'
 tags:
