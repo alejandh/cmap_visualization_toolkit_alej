@@ -33,8 +33,3 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit PDF to repository
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: '(auto) Paper PDF Draft'
-          add: 'documentation/paper.pdf'
