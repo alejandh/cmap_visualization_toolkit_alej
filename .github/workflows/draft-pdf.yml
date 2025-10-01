@@ -3,10 +3,10 @@ name: Draft PDF
 on:
   push:
     paths:
-      - documentation/paper.md         
-      - documentation/paper_ref.bib   
-      - documentation/assets/**      
-      - .github/workflows/draft-pdf.yml 
+      - documentation/paper.md
+      - documentation/paper_ref.bib
+      - documentation/assets/**
+      - .github/workflows/draft-pdf.yml
 
 jobs:
   paper:
@@ -28,7 +28,11 @@ jobs:
           name: paper
           path: documentation/paper.pdf
 
-      # auto-commit PDF into the repo (needs write perms enabled)
+      - name: Configure git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Commit PDF to repository
         uses: EndBug/add-and-commit@v9
         with:
