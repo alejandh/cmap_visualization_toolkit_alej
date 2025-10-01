@@ -103,27 +103,28 @@ CMAP produces multiple visual outputs that allow researchers to explore relation
 
 - **Word Clouds** \autoref{word_cloud} – Highlight the most frequent and salient terms across a dataset or within filtered subsets, and allow color coding by theme. 
 
-![Word Cloud. \label{word_cloud}](figures/word_cloud.png){width=32%}
+![Word Cloud. \label{word_cloud}](figures/word_cloud.png){width=70%}
 
 - **t-SNE Semantic Maps** \autoref{tsne} – Reduce high-dimensional similarity matrices into 2D plots, emphasizing seed words for interpretability.
 
-![t-SNE Plot. \label{tsne}](figures/tsne.png){width=32%}
+![t-SNE Plot. \label{tsne}](figures/tsne.png){width=70%}
 
 - **Word Heatmaps** \autoref{heatmap} – Show how concepts or "codes" (meta-data used to index text, like #morality_talk) relate to each other on a color coded table with options for clustering.
   - Basic Heatmap – clusters keywords by similarity.
   - Code Co-Occurrence Heatmaps – Display the frequency with which qualitative codes appear together in the same entries.
   - 
-![Heatmap. \label{heatmap}](figures/heatmap.png){width=32%}
+![Heatmap. \label{heatmap}](figures/heatmap.png){width=70%}
 
 - **Semantic Networks** \autoref{semantic_network} – Visualize relationships among codes or concepts as nodes and edges, with edge weights reflecting co-occurrence or similarity. Users can define custom semantic groups inductively (e.g., from heatmaps or deep reading) or deductively (via theory-driven categories). Normalized cosine similarity scores (1–5) can highlight the strongest links between clusters, and options for styling (color, edge thickness, clustering). Always presented with heatmaps for inductive cross reference.
   - Heatmap + Network (Plain) – overlays a basic network on the heatmap.
   - Heatmap + Network (Colored) – adds colored clusters, semantic links, and optional edge styling.
 
-![Semantic Network. \label{semantic_network}](figures/semantic_network.png){width=32%}
+![Semantic Network. \label{semantic_network}](figures/semantic_network.png){width=70%}
 
 
 The examples shown below use qualitative interview data (\autoref{example_csv}) described in [@abramson2015beyond], but CMAP can be applied to any properly formatted .csv dataset.
-![Example in .csv \label{example_csv}](figures/example_csv.png){width=70%}
+
+![Example in .csv \label{example_csv}](figures/example_csv.png){width=100%}
 
 
 Any data can be used as long as it includes the required fields from the schema below (\autoref{schema}).
