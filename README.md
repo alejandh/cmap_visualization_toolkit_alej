@@ -40,7 +40,7 @@ The CMAP (Cultural Mapping and Pattern Analysis) tool is free, open-source and p
 ### Notebook Version & Local Installation
 
 For an introduction, in an easy to use online version (not for sensitive data) check out the collab version [here](https://colab.research.google.com/drive/1n90EDMSiXhIaOULUMPJ4W4hqdZCh1NQw?usp=sharing)  
-You can find a short tutorial on using the toolkit in collab [here](https://vimeo.com/1122226315))
+You can find a short tutorial on using the toolkit in collab [here](https://vimeo.com/1122226315)). You can read a general description in the working paper [here](https://github.com/Computational-Ethnography-Lab/cmap_visualization_toolkit/blob/main/documentation/paper.md).
 ---
 
 ## What This Toolkit Does
