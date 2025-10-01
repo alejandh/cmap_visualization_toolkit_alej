@@ -157,3 +157,4 @@ __marimo__/
 # Allow specific directories
 !/data
 !/input
+!/documentation
