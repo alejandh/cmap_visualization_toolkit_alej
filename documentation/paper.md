@@ -359,6 +359,12 @@ Deliberately choosing not to automate analysis when ethical considerations. Docu
 
 ## Related Software Resources
 
+**Boy, John D.** 2020. *textnets: A Python package for text analysis with networks.* Journal of Open Source Software 5(54):2594. Python (network analysis). [Article](https://doi.org/10.21105/joss.02594) | [GitHub Repository](https://github.com/jboynyc/textnets) | [Documentation](https://textnets.readthedocs.io/)
+
+**Hansen, Lasse, Ludvig Renbo Olsen, and Kenneth Enevoldsen.** 2023. *TextDescriptives: A Python package for calculating a large variety of metrics from text.* Journal of Open Source Software 8(84):5153. Python (text metrics). [Article](https://doi.org/10.21105/joss.05153) | [GitHub Repository](https://github.com/HLasse/TextDescriptives) | [Documentation](https://hlasse.github.io/TextDescriptives/) | [Web App](https://textdescriptives.streamlit.app/)
+
+**Yang, Ziying, Gosia Mikołajczak, and Andrew Turpin.** 2021. *ConTEXT Explorer: A web-based text analysis tool for exploring and visualizing concepts across time.* Journal of Open Source Software 6(68):3347. Web application. [Article](https://doi.org/10.21105/joss.03347) | [GitHub Repository](https://github.com/alicia-ziying-yang/conTEXT-explorer)
+
 **Li, Zhuofan and Corey M. Abramson.** 2022. *An Introduction to Machine Learning for Qualitative Research.* Jupyter Notebooks (Python). American Sociological Association Methodology Workshop. [GitHub Repository](https://github.com/lizhuofan95/ASA2022_Workshop)
 
 **Nelson, Laura K.** 2020. "Computational Grounded Theory: A Methodological Framework." *Sociological Methods & Research* 49(1):3-42. [Article](https://journals.sagepub.com/doi/10.1177/0049124117729703) | [Homepage](https://www.lauraknelson.com/)
@@ -367,18 +373,17 @@ Deliberately choosing not to automate analysis when ethical considerations. Docu
 - ATLAS.ti Scientific Software Development GmbH. 2023. ATLAS.ti Mac (version 23.2.1). https://atlasti.com
 - Dedoose Version 9.0.107. 2023. Los Angeles, CA: SocioCultural Research Consultants, LLC. www.dedoose.com
 - Lumivero. 2023. NVivo (Version 14). https://www.lumivero.com
-
 ## Representative Scientific Applications
 
 ### Peer-Reviewed Articles
-
+- Abramson, Corey M., Zhuofan Li, and Tara Prendergast. Accepted 2026. "Qualitative Research in an Era of AI: A Pragmatic Approach to Data Analysis, Workflow, and Computation." *Annual Review of Sociology*. [Early preprint available](https://arxiv.org/pdf/2509.12503)
 - Abramson, Corey M., Tara Prendergast, Zhuofan Li, and Martín Sánchez-Jankowski. 2024. "Inequality in the Origins and Experiences of Pain: What 'Big (Qualitative) Data' Reveal About Social Suffering in the United States." *Russell Sage Foundation Journal of the Social Sciences* 10(5):34-65. [Link](https://www.rsfjournal.org/content/rsfjss/10/5/34.full.pdf)  
 - Arteaga, Ignacia, Alma Hernández de Jesús, Brandi Ginn, Corey M. Abramson, and Daniel Dohan. 2025. "Understanding How Social Context Shapes Decisions to Seek Institutional Care: A Qualitative Study of Experiences of Progressive Cognitive Decline Among Latinx Families." *The Gerontologist* gnaf207. [Link](https://doi.org/10.1093/geront/gnaf207)  
 - Li, Zhuofan and Corey M. Abramson. 2025. "Ethnography and Machine Learning: Synergies and Applications." In *Oxford Handbook of the Sociology of Machine Learning*, edited by [editors]. Oxford University Press. [Preprint](https://arxiv.org/abs/2412.06087)  
-- Abramson, Corey M., Zhuofan Li, and Tara Prendergast. Expected 2026. "Qualitative Research in an Era of AI: A Pragmatic Approach to Data Analysis, Workflow, and Computation." *Annual Review of Sociology*. [Preprint available](https://arxiv.org/pdf/2509.12503)
 
-### Conference Presentations (2024-2025)
 
+### Conference Presentations and Keynote (2024-2025)
+- Abramson, Corey M. KEYNOTE: “On Patterns, Edge Cases, and Scalable Interpretation: Pragmatic Uses of AI in Qualitative Research,” 2025. Workshop on AI for Qualitative Research, Data Sciences Institute, University of Toronto.
 - Abramson, Corey M., Kieran Turner, Ignacia Arteaga, Alma Hernández de Jesús, Brandi Ginn, Yuhan Nian, and Daniel Dohan. 2025. "Pragmatic Sensemaking: Semantic Maps of Dementia Narratives." ARS'25: Tenth International Workshop on Social Network Analysis. Naples, Italy.
 - Abramson, Corey M., Kieran Turner,Ignacia Arteaga, Alma Hernández de Jesús, Brandi Ginn, Yuhan Nian, and Daniel Dohan. 2025. "Pragmatic Sensemaking: Mapping the Cultural Work of Living with Dementia." American Sociological Association Annual Meeting. Chicago, IL.  
 - Abramson, Corey M., Zhuofan Li, and Tara Prendergast. 2024. "Qualitative Sociology in a Computational Era: Classic Issues, Emerging Trends, and New Possibilities." American Sociological Association Annual Meeting. Montreal, Canada.
