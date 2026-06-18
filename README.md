@@ -158,60 +158,12 @@ pip install -r requirements.txt
 python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet'); nltk.download('averaged_perceptron_tagger')"
 
 # 6. Launch Jupyter Notebook
-jupyter notebook visulization_toolkit_final.ipynb
+jupyter notebook visualization_toolkit_final.ipynb
 
 # 6b. If you would rather use VS code or another integrated development enviornment, simply open the .ipynb file in that application.
 ```
 
 This installation method ensures all packages are installed with the correct versions specified in the `requirements.txt` file.
-
-### Manual Installation
-
-If you prefer to install step by step or need more control over the process:
-
-#### Prerequisites
-
-Before starting, you need to install Anaconda, which is free software that helps manage Python packages.
-
-1. **Download Anaconda**:
-   - Go to the [Anaconda website](https://www.anaconda.com/products/distribution)
-   - Click the "Download" button
-   - Choose the version for your computer (Windows, Mac, or Linux)
-
-2. **Install Anaconda**:
-   - Double-click the downloaded file
-   - Follow the on-screen instructions
-   - Accept the default options if you're unsure
-
-#### Using Conda CLI
-
-For users comfortable with command line:
-
-1. **Open Terminal or Command Prompt**:
-   - Windows: Open "Anaconda Prompt" from Start menu
-   - Mac/Linux: Open Terminal app
-
-2. **Create and Set Up Environment**:
-   ```bash
-   # Create a new environment
-   conda create --name cmap_visualization_toolkit python=3.11
-   
-   # Activate the environment
-   conda activate cmap_visualization_toolkit
-   
-   # Get the code
-   git clone https://github.com/Computational-Ethnography-Lab/cmap_visualization_toolkit.git
-   cd cmap_visualization_toolkit
-   
-   # Install Jupyter
-   conda install -y jupyter
-   
-   # Install other packages with version constraints
-   pip install -r requirements.txt
-   
-   # Download NLTK resources (standard language processing datasets)
-   python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet'); nltk.download('averaged_perceptron_tagger'); print('NLTK resources downloaded successfully!')"
-   ```
 
 #### Using Anaconda Navigator GUI
 
