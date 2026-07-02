@@ -215,13 +215,13 @@ For users who prefer a visual interface:
 
 2. **Open the Notebook**:
    ```bash
-   jupyter notebook visulization_toolkit_final.ipynb
+   jupyter notebook visualization_toolkit_final.ipynb
    ```
    
    If using VS Code:
    1. Open VS Code
    2. Click "File" → "Open Folder" and select the cmap_visualization_toolkit folder
-   3. Find and double-click on `visulization_toolkit_final.ipynb`
+   3. Find and double-click on `visualization_toolkit_final.ipynb`
    4. When prompted, select the `cmap_visualization_toolkit` kernel
 
 3. **Run the Code**:
@@ -238,7 +238,7 @@ For users who prefer a visual interface:
 
 2. **Open the Notebook**:
    ```bash
-   jupyter notebook visulization_toolkit_final.ipynb
+   jupyter notebook visualization_toolkit_final.ipynb
    ```
 
 3. **Run Each Section**:
