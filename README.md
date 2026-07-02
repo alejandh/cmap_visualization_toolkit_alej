@@ -84,18 +84,19 @@ CMAP Visualization Toolkit supports advanced analytic methods that are appropria
 
 ## Installation
 
-**⚠️ IMPORTANT**: This toolkit requires Anaconda or Miniconda to be installed on your system. If you don't have it yet, [download and install Anaconda](https://www.anaconda.com/products/distribution) or [download and install Miniconda](https://docs.conda.io/en/latest/miniconda.html) before proceeding.
+**⚠️ IMPORTANT**: This toolkit requires Anaconda or Miniconda to be installed on your system. **⚠️**
+<br>
+_If you don't have Anaconda installed, please follow [this video guide](https://youtu.be/mP-FOogmJuM?si=rH6R8lh7MyuiRnhG) on how to [install Anaconda](https://www.anaconda.com/download)._ 
+<br><br>
 
-### One-Command Installation (Easiest Method) 
-
-For the simplest installation, follow these steps:
+### One-Command Installation ([Video Guide](https://youtu.be/dnsLjgckl4g?si=Ndzj7hu3yNUY--Ah))
 
 **If you are using anaconda:**
   -  Open the anaconda program
   -  Left-click 'Environments' (left side of the interface)
   -  Left-click (left click the arrow next to base(root)-> cick open terminal.
-  -  In the terminal window that opens, cut and paste the text in steps 1-3.
-    -   Make sure to use the version for your system (windows, mac, or linux)
+  -  In the terminal window that opens, copy and paste the text in steps 1-4.
+    -   For step 3 make sure to use the version for your system (windows, mac, or linux).
       -   _Note: some windows versions require pasting by right-clicking instead of ctrl-v_
 
 
