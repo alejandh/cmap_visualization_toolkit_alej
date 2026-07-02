@@ -99,14 +99,18 @@ For the simplest installation, follow these steps:
       -   _Note: some windows versions require pasting by right-clicking instead of ctrl-v_
 
 
-1. **Clone the repository**:
+1. **Install git**:
+   ```bash
+   conda install git
+   ```
+
+2. **Clone the repository**:
    ```bash
    git clone https://github.com/Computational-Ethnography-Lab/cmap_visualization_toolkit.git
    cd cmap_visualization_toolkit
    ```
    
-
-2. **Run the installation script**:
+3. **Run the installation script**:
 - This sets up the python packages needed to run the toolkit.
   
    **For macOS/Linux**:
@@ -123,7 +127,7 @@ For the simplest installation, follow these steps:
    python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet'); nltk.download('averaged_perceptron_tagger'); print('NLTK resources downloaded successfully!')"
    ```
 
-3. **Launch Jupyter Notebook**:
+4. **Launch Jupyter Notebook**:
    ```bash
    jupyter notebook visualization_toolkit_final.ipynb
    ```
